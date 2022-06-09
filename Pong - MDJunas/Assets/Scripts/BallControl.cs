@@ -8,6 +8,8 @@ public class BallControl : MonoBehaviour
 
     public Vector2 speed;
     private Rigidbody2D rig;
+
+    public Vector2 resetPosition;
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
@@ -18,5 +20,10 @@ public class BallControl : MonoBehaviour
     void Update()
     {
        
+    }
+
+    public void ResetBall()
+    {
+        transform.position = new Vector3(resetPosition.x, resetPosition.y, 2);
     }
 }
