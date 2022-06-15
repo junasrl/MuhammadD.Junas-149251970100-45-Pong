@@ -16,6 +16,11 @@ public class BallControl : MonoBehaviour
         rig.velocity = speed;
     }
 
+    public void ActivatePUSpeedUp(float magnitude)
+    {
+        rig.velocity *= magnitude;
+    }
+
     // Update is called once per frame
     void Update()
     {
