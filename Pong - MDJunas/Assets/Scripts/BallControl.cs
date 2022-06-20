@@ -9,6 +9,9 @@ public class BallControl : MonoBehaviour
     public Vector2 speed;
     private Rigidbody2D rig;
 
+    public string LastPaddle;
+    public int isPaddleRight;
+
     public Vector2 resetPosition;
     void Start()
     {
@@ -19,6 +22,18 @@ public class BallControl : MonoBehaviour
     public void ActivatePUSpeedUp(float magnitude)
     {
         rig.velocity *= magnitude;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collisioninfo) 
+    {
+        string collider_tag = collisioninfo.collider.tag;
+        string collider_name = collisioninfo.collider.name;
+
+        if (collider_tag == "Paddle")
+        {
+            LastPaddle = collider_name;
+        }
+
     }
 
     // Update is called once per frame

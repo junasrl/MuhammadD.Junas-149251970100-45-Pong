@@ -6,13 +6,40 @@ public class PaddleControl : MonoBehaviour
 {
     // Start is called before the first frame update
 
-    public int speed;
+    public float speed;
     public KeyCode upKey;
     public KeyCode downKey;
     private Rigidbody2D rig;
+
+
     void Start()
     {
         rig = GetComponent<Rigidbody2D>();
+    }
+
+    public void ActivatePUPaddleSpeed(float magnitude)
+    {
+        StartCoroutine(PaddleSpeedTimeOut(magnitude));
+    }
+
+
+    public void ActivateLongPaddle(GameObject paddle)
+    {
+        StartCoroutine(LongPaddleTimeOut(paddle));
+    }
+
+    IEnumerator LongPaddleTimeOut(GameObject paddleLongCor)
+    {
+         paddleLongCor.transform.localScale += new Vector3 (0,2,0);
+         yield return new WaitForSeconds(5);
+         paddleLongCor.transform.localScale += new Vector3 (0,-2,0);
+    }
+
+    IEnumerator PaddleSpeedTimeOut(float magnitudeCor)
+    {
+         speed *= magnitudeCor;
+         yield return new WaitForSeconds(5);
+         speed /= magnitudeCor;
     }
 
     // Update is called once per frame
